@@ -11,7 +11,7 @@ export const TaskWidget = () => {
       <h2>Задачи:</h2>
       <TaskFilters filter={filter} setFilter={setFilter} />
       <div className={styles.tasks}>
-        <TaskList filter={filter} tasks={tasks} removeTask={removeTask} />
+        <TaskList tasks={tasks} removeTask={removeTask} />
       </div>
     </div>
   );
