@@ -68,6 +68,21 @@
     }
   }
 
+  .delete {
+    border: none;
+    background: none;
+    padding: 6xp 12px;
+    cursor: pointer;
+    color: #fd5d5d;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 16px;
+
+    &:hover {
+      color: #ef4444;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
   .icon {
     color: #22c55e;
     flex-shrink: 0;

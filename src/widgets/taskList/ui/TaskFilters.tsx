@@ -1,10 +1,11 @@
-import { useTasks, type Filter } from "../model/useTasks";
+import { type Filter } from "../model/useTasks";
 
-export const TaskFilters = () => {
-  const { filter, setFilter } = useTasks();
-  const handleFilterChange = (status: Filter) => {
-    setFilter(status);
-  };
+type TProps = {
+  filter: Filter;
+  setFilter: (f: Filter) => void;
+};
+
+export const TaskFilters: React.FC<TProps> = ({ filter, setFilter }) => {
   return (
     <div>
       фильтры: {filter}
