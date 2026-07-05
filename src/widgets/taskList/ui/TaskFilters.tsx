@@ -1,3 +1,4 @@
+import { FilterButton } from "shared";
 import { type Filter } from "../model/useTasks";
 
 type TProps = {
@@ -8,10 +9,22 @@ type TProps = {
 export const TaskFilters: React.FC<TProps> = ({ filter, setFilter }) => {
   return (
     <div>
-      фильтры: {filter}
-      <button onClick={() => setFilter("all")}>Все задачи</button>
-      <button onClick={() => setFilter("completed")}>Завершенные</button>
-      <button onClick={() => setFilter("incomplete")}>Незавершенные</button>
+      фильтры
+      <FilterButton
+        text="Все задачи"
+        isActive={filter === "all"}
+        handleClick={() => setFilter("all")}
+      />
+      <FilterButton
+        text="Завершенные"
+        isActive={filter === "completed"}
+        handleClick={() => setFilter("completed")}
+      />
+      <FilterButton
+        text="Незавершенные"
+        isActive={filter === "incomplete"}
+        handleClick={() => setFilter("incomplete")}
+      />
     </div>
   );
 };
