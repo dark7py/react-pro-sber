@@ -1,5 +1,5 @@
+import type { Filter } from "features/tasksList";
 import { FilterButton } from "shared";
-import { type Filter } from "../model/useTasks";
 
 type TProps = {
   filter: Filter;

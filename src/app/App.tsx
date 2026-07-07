@@ -1,12 +1,8 @@
-import { TaskPage } from "pages/home";
+import { TaskPage } from "pages/index";
 import "./App.css";
 
 function App() {
-  return (
-    <div>
-      <TaskPage />
-    </div>
-  );
+  return <TaskPage />;
 }
 
 export default App;

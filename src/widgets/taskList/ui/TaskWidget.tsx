@@ -1,6 +1,5 @@
-import { useTasks } from "../model/useTasks";
 import { TaskFilters } from "./TaskFilters";
-import { TaskList } from "./TaskList";
+import { TaskList, useTasks } from "features/tasksList";
 import styles from "./TaskWidget.module.scss";
 
 export const TaskWidget = () => {
