@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { type Task } from "entities/task";
 
 export type Filter = "all" | "completed" | "incomplete";
@@ -8,6 +8,8 @@ const mockTasks: Task[] = [
   { id: "2", title: "Task 2", completed: true },
   { id: "3", title: "Task 3", completed: false },
   { id: "4", title: "Task 4", completed: true },
+  { id: "5", title: "Task 5", completed: true },
+  { id: "6", title: "Task 6", completed: true },
 ];
 
 export function useTasks(initial?: Task[]): {
@@ -18,23 +20,20 @@ export function useTasks(initial?: Task[]): {
 } {
   const [allTasks, setAllTasks] = useState<Task[]>(initial || mockTasks);
   const [filter, setFilter] = useState<Filter>("all");
-  const [filteredTasks, setFilteredTasks] = useState<Task[]>(allTasks);
 
-  const removeTask = (id: string) => {
+  const removeTask = useCallback((id: string) => {
     setAllTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-  };
+  }, []);
 
   // Фильтрация при изменении задач или фильтра
-  useEffect(() => {
-    let result = allTasks;
-
+  const filteredTasks = useMemo(() => {
     if (filter === "completed") {
-      result = allTasks.filter((task) => task.completed);
+      return allTasks.filter((task) => task.completed);
     } else if (filter === "incomplete") {
-      result = allTasks.filter((task) => !task.completed);
+      return allTasks.filter((task) => !task.completed);
     }
 
-    setFilteredTasks(result);
+    return allTasks;
   }, [allTasks, filter]);
 
   return {
