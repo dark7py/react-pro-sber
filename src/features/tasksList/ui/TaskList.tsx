@@ -7,9 +7,12 @@ type TProps = {
 };
 
 export const TaskList: React.FC<TProps> = ({ tasks, removeTask }) => {
-  const handleDelete = useCallback((id: string) => {
-    removeTask(id);
-  }, []);
+  const handleDelete = useCallback(
+    (id: string) => {
+      removeTask(id);
+    },
+    [removeTask],
+  );
 
   const renderTasks = tasks.map(({ id, title, completed }) => (
     <TaskCard
