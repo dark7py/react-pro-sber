@@ -1,17 +1,17 @@
+import { memo } from "react";
 import type { Task } from "../model/types";
-// import { CheckCircle } from "lucide-react";
 import styles from "./TaskCard.module.scss";
 
 type TaskProps = Task & {
   handleDelete: (id: string) => void;
 };
 
-export const TaskCard: React.FC<TaskProps> = ({
+export const TaskCard: React.FC<TaskProps> = memo(function TaskCard({
   title,
   id,
   completed,
   handleDelete,
-}) => {
+}) {
   return (
     <div className={`${styles.card} ${completed ? styles.completed : ""}`}>
       <div className={styles.content}>
@@ -32,4 +32,4 @@ export const TaskCard: React.FC<TaskProps> = ({
       </div>
     </div>
   );
-};
+});
