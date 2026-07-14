@@ -1,27 +1,26 @@
-import { useCallback, useMemo, useState } from "react";
-import { type Task } from "entities/task";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useGetTaskListQuery, type Task } from "entities/task";
 
 export type Filter = "all" | "completed" | "incomplete";
 
-const mockTasks: Task[] = [
-  { id: "1", title: "Task 1", completed: false },
-  { id: "2", title: "Task 2", completed: true },
-  { id: "3", title: "Task 3", completed: false },
-  { id: "4", title: "Task 4", completed: true },
-  { id: "5", title: "Task 5", completed: true },
-  { id: "6", title: "Task 6", completed: true },
-];
-
-export function useTasks(initial?: Task[]): {
+export function useTasks(): {
   tasks: Task[];
   filter: Filter;
   setFilter: (f: Filter) => void;
-  removeTask: (id: string) => void;
+  removeTask: (id: number) => void;
+  isError: boolean;
+  isLoading: boolean;
 } {
-  const [allTasks, setAllTasks] = useState<Task[]>(initial || mockTasks);
+  const { isError, isLoading, data = [] } = useGetTaskListQuery();
+
+  const [allTasks, setAllTasks] = useState<Task[]>(data);
   const [filter, setFilter] = useState<Filter>("all");
 
-  const removeTask = useCallback((id: string) => {
+  useEffect(() => {
+    setAllTasks(data);
+  }, [data]);
+
+  const removeTask = useCallback((id: number) => {
     setAllTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   }, []);
 
@@ -41,5 +40,7 @@ export function useTasks(initial?: Task[]): {
     filter,
     setFilter,
     removeTask,
+    isError,
+    isLoading,
   };
 }

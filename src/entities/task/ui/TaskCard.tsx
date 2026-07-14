@@ -2,8 +2,8 @@ import { memo } from "react";
 import type { Task } from "../model/types";
 import styles from "./TaskCard.module.scss";
 
-type TaskProps = Task & {
-  handleDelete: (id: string) => void;
+type TaskProps = Omit<Task, "userId"> & {
+  handleDelete: (id: number) => void;
 };
 
 export const TaskCard: React.FC<TaskProps> = memo(function TaskCard({

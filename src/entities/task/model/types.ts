@@ -1,5 +1,6 @@
-export interface Task {
-  id: string;
+export type Task = {
+  userId: number;
+  id: number;
   title: string;
   completed: boolean;
-}
+};

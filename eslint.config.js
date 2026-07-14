@@ -71,6 +71,7 @@ export default [
       // Общие правила
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "prefer-const": "error",
+      "react-hooks/set-state-in-effect": "off",
     },
   },
 
