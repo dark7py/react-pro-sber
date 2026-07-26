@@ -3,13 +3,16 @@ import { useCallback } from "react";
 
 type TProps = {
   tasks: Task[];
-  removeTask: (id: string) => void;
+  removeTask: (id: number) => void;
 };
 
 export const TaskList: React.FC<TProps> = ({ tasks, removeTask }) => {
-  const handleDelete = useCallback((id: string) => {
-    removeTask(id);
-  }, []);
+  const handleDelete = useCallback(
+    (id: number) => {
+      removeTask(id);
+    },
+    [removeTask],
+  );
 
   const renderTasks = tasks.map(({ id, title, completed }) => (
     <TaskCard
