@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   groupRegistrationSchema,
@@ -12,12 +12,15 @@ export const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<GroupRegistrationValues>({
     mode: "onTouched",
     resolver: zodResolver(groupRegistrationSchema),
     defaultValues,
   });
+
+  const { fields, append, remove } = useFieldArray({ control, name: "links" });
 
   const onSubmit = (values: GroupRegistrationValues) => {
     alert(JSON.stringify(values, null, 2));
@@ -73,6 +76,35 @@ export const RegistrationForm = () => {
           <p className={styles.errorMsg}>{errors.confirmPassword.message}</p>
         )}
       </div>
+      <div className={styles.linksContainer}>
+        <p>укажите соцсети</p>
+        <div>
+          {fields.map((field, index) => (
+            <div key={field.id}>
+              <input
+                {...register(`links.${index}.link`)}
+                type="url"
+                placeholder="Добавьте ссылку на профиль"
+                className={styles.input}
+              />
+              <button type="button" onClick={() => remove(index)}>
+                Удалить
+              </button>
+              {errors.links && errors.links[index]?.link && (
+                <p className={styles.errorMsg}>
+                  {errors.links[index].link.message}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <button type="button" onClick={() => append({ link: "" })}>
+          добавить ссылку
+        </button>
+      </div>
+
+      <button type="submit">Регистрация</button>
     </form>
   );
 };
