@@ -3,6 +3,7 @@ import {
   PreviousInput,
   FocusTracker,
   DebouncedLogger,
+  WebSocketLogger,
 } from "features/refExamples";
 
 export const RefExamples = () => {
@@ -13,6 +14,7 @@ export const RefExamples = () => {
       <PreviousInput />
       <FocusTracker />
       <DebouncedLogger />
+      <WebSocketLogger />
     </div>
   );
 };
