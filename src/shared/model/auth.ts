@@ -1,10 +1,6 @@
 export interface AuthInfo {
-  email: string;
-  password: string;
-  user: {
-    id: string;
-    email: string;
-  };
+  userId: string;
+  name: string;
   accessToken: string;
 }
 

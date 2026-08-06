@@ -1,7 +1,8 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import type { FC, PropsWithChildren } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import { useContextAuthStrategy } from "shared/hooks/useContextAuthStrategy";
 
-export function ProtectedRoute() {
+export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   const { isAuthenticated, isReady } = useContextAuthStrategy();
   const location = useLocation();
 
@@ -10,8 +11,8 @@ export function ProtectedRoute() {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
-  return <Outlet />;
-}
+  return children;
+};

@@ -6,7 +6,7 @@ export const useContextAuthStrategy: UseAuthStrategy = () => {
   const [state, setState] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setState(true), 5e3);
+    setTimeout(() => setState(true), 100);
   }, []);
 
   const { accessToken } = useAuthContext();

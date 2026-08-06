@@ -1,35 +1,32 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "shared/model/authContext";
-import { type AuthInfo } from "shared/model/auth";
+import { signIn } from "shared/api/auth";
+import { useNavigate } from "react-router-dom";
+import { type SignInFormValues } from "../model";
 
 export const LoginForm = () => {
   const { login } = useAuthContext();
   const [error, setError] = useState<string | null>(null);
-  // const history = useHistory();
 
-  const { register, handleSubmit } = useForm<AuthInfo>();
+  const { register, handleSubmit } = useForm<SignInFormValues>();
+  const navigate = useNavigate();
 
-  const onSubmit = async (data: AuthInfo) => {
+  const onSubmit = async (data: SignInFormValues) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await signIn(data);
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      const { user, accessToken } = response.data;
+
+      if (response.status === 201) {
+        login({
+          accessToken: accessToken,
+          userId: user.id,
+          name: "",
+        });
+
+        navigate("/");
       }
-
-      const result = await response.json();
-      const { user, accessToken } = result;
-
-      localStorage.setItem("accessToken", accessToken);
-      login(user);
-      // history.push("/dashboard");
     } catch (error) {
       console.error(error);
       setError("Failed to log in. Please try again.");

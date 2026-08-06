@@ -2,15 +2,11 @@ import { createContext, useContext } from "react";
 import type { AuthContextModel } from "./auth";
 
 export const AuthContext = createContext<AuthContextModel>({
-  email: "",
-  password: "",
   login: () => {},
   logout: () => {},
   accessToken: "",
-  user: {
-    email: "",
-    id: "",
-  },
+  name: "",
+  userId: "",
 });
 
 export const useAuthContext = () => {
