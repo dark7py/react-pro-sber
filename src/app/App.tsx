@@ -1,14 +1,16 @@
-import { TaskPage } from "pages/index";
-import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { Outlet } from "react-router-dom";
 
-function App() {
+import "./App.css";
+import { withAuthProvider } from "./providers/Auth";
+
+const App = withAuthProvider(() => {
   return (
     <Provider store={store}>
-      <TaskPage />
+      <Outlet />
     </Provider>
   );
-}
+});
 
 export default App;
