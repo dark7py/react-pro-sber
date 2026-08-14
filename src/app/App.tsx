@@ -5,6 +5,8 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import { withAuthProvider } from "./providers/Auth";
 import { getRandomInt } from "shared/utils";
+import { Header } from "widgets/Header";
+import { Suspense } from "react";
 
 const App = withAuthProvider(() => {
   const randomNumber = getRandomInt(1, 100);
@@ -12,7 +14,10 @@ const App = withAuthProvider(() => {
 
   return (
     <Provider store={store}>
-      <Outlet />
+      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </Provider>
   );
 });

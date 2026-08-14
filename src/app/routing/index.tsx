@@ -1,9 +1,16 @@
-import { NotFoundPage, TaskPage, Login, Profile } from "pages/index";
+import { NotFoundPage, TaskPage, Login } from "pages/index";
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
 import { withProtection } from "shared/model/withProtection";
 import { useContextAuthStrategy } from "shared/hooks/useContextAuthStrategy";
+import { lazy } from "react";
+
+const Profile = lazy(() =>
+  import("pages/profile").then((module) => ({
+    default: module.Profile,
+  })),
+);
 
 const ProtectedProfilePage = withProtection(Profile, useContextAuthStrategy);
 

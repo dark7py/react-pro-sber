@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vite.dev/config/
@@ -8,11 +7,13 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      tsconfigPaths(),
       mode === "analyze"
-        ? visualizer({ open: true, template: "flamegraph" })
+        ? visualizer({ open: true, template: "network" })
         : null,
     ],
+    resolve: {
+      tsconfigPaths: true,
+    },
     build: {
       outDir: "build",
       target: "es2022",
