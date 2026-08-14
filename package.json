@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "check:bundleSize": "vite build --mode analyze",
+    "fix:eslint": "eslint --fix --ext .ts,.tsx ./src --max-warnings 0",
+    "fix:prettier": "prettier --ignore-path .gitignore \"./src/**/*.{ts,tsx,scss,sass,css,md,mdx}\" --write",
+    "fix:stylelint": "stylelint --fix \"./src/**/*.{scss,sass,css}\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -39,6 +43,7 @@
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.6.0",
     "prettier": "^3.8.4",
+    "rollup-plugin-visualizer": "7.0.1",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.61.0",
     "vite": "^8.1.0",
