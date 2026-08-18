@@ -4,14 +4,17 @@ import { WizardForm } from "features/wizardForm";
 import { RefExamples } from "widgets/refExample";
 
 import s from "./TaskPage.module.scss";
+import { PortalTooltip } from "widgets/portalExamples";
 
 export const TaskPage = () => {
   return (
     <div className={s.container}>
-      <TaskWidget />
+      <PortalTooltip />
+
+      {/* <TaskWidget />
       <RefExamples />
       <LoginWidget />
-      <WizardForm />
+      <WizardForm /> */}
     </div>
   );
 };
