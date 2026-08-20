@@ -1,4 +1,4 @@
-import { NotFoundPage, TaskPage, Login } from "pages/index";
+import { NotFoundPage, TaskPage, Login, PortalShowcase } from "pages/index";
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProtectedProfilePage />,
+      },
+      {
+        path: "portal",
+        element: <PortalShowcase />,
       },
       {
         path: "*",
