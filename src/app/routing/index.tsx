@@ -1,4 +1,10 @@
-import { NotFoundPage, TaskPage, Login, PortalShowcase } from "pages/index";
+import {
+  NotFoundPage,
+  TaskPage,
+  Login,
+  PortalShowcase,
+  React19Example,
+} from "pages/index";
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
@@ -34,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "portal",
         element: <PortalShowcase />,
+      },
+      {
+        path: "react19",
+        element: <React19Example />,
       },
       {
         path: "*",
