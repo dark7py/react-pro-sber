@@ -1,0 +1,89 @@
+// Переменные для быстрой кастомизации
+$overlay-bg: rgba(0, 0, 0, 0.5);
+$modal-bg: #ffffff;
+$text-muted: #555555;
+$danger-color: #ff4d4f;
+$danger-hover: #ff7875;
+$btn-default-bg: #f5f5f5;
+$btn-default-hover: #e8e8e8;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $overlay-bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: $modal-bg;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0 0 20px 0;
+  color: $text-muted;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &Cancel {
+    background-color: $btn-default-bg;
+    color: #333;
+    border-color: #d9d9d9;
+
+    &:hover {
+      background-color: $btn-default-hover;
+    }
+  }
+
+  &Confirm {
+    background-color: $danger-color;
+    color: #fff;
+
+    &:hover {
+      background-color: $danger-hover;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
